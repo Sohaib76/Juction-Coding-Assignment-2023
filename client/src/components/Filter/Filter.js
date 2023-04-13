@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -10,6 +10,16 @@ import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import Avatar from '@mui/material/Avatar';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import Link from '@mui/material/Link';
+import { Link as RouterLink } from "react-router-dom";
+
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -56,9 +66,23 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 
-const Filter = ({ onFilterChange }) => {
+
+const Filter = ({ onFilterChange , showSearch}) => {
+  if (onFilterChange){
   const handleFilterChange = (event) => {
+   
     onFilterChange(event.target.name, event.target.value);
+    }
+  };
+
+  const [anchorEl, setAnchorEl] = useState(null)
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
   return (
@@ -76,6 +100,8 @@ const Filter = ({ onFilterChange }) => {
     <Box sx={{ flexGrow: 1 }}>
     <AppBar position="static" sx={{ backgroundColor: '#000' }}>
       <Toolbar>
+      <Link style={{textDecoration:'none', color:'white'}}  component={RouterLink} to="/"> 
+
         <IconButton
           size="large"
           edge="start"
@@ -85,6 +111,7 @@ const Filter = ({ onFilterChange }) => {
         >
           <MenuIcon />
         </IconButton>
+        </Link>
         <Typography
           variant="h6"
           noWrap
@@ -92,20 +119,71 @@ const Filter = ({ onFilterChange }) => {
           sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
         >
           Junction
+
         </Typography>
+
+      {showSearch && 
       
-        <Search>
-          <SearchIconWrapper>
-            <SearchIcon />
-          </SearchIconWrapper>
-          <StyledInputBase
-            placeholder="Search…"
-            inputProps={{ 'aria-label': 'search' }}
-          />
-        </Search>
-        <IconButton sx={{ p: 0 }}>
+      <Search>
+      <SearchIconWrapper>
+        <SearchIcon />
+      </SearchIconWrapper>
+      <StyledInputBase
+        placeholder="Search…"
+        inputProps={{ 'aria-label': 'search' }}
+      />
+    </Search>
+      
+      
+      }
+       
+        {/* <nav>
+          <Link to="/pending">  */}
+          {/* profile */}
+          <div>
+        <IconButton
+        onClick={handleMenu}
+        sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="https://api.dicebear.com/6.x/adventurer/svg?seed=Sophie" />
         </IconButton>
+        <Menu
+                id="menu-appbar"
+                backgroundColor="black"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+                
+                PaperProps={{
+                  sx: {
+                    backgroundColor: 'black', // Set the background color to black
+                  },
+                }}
+              >
+
+        <Link style={{textDecoration:'none'}}  component={RouterLink} to="/profile">
+                <MenuItem                 sx={{color:'white',}}
+                >
+
+                  User</MenuItem>
+                  </Link>
+                  <Link style={{textDecoration:'none'}}  component={RouterLink} to="/pending"> 
+                <MenuItem  
+                                sx={{color:'white'}}
+                >Server</MenuItem>
+                </Link>
+              </Menu>
+              </div>
+        {/* </Link>
+        </nav> */}
       </Toolbar>
     </AppBar>
   </Box>

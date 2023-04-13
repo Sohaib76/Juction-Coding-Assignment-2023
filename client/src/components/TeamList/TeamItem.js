@@ -8,6 +8,10 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Grid } from '@mui/material';
 import Link from '@mui/material/Link';
+import { Link as RouterLink } from "react-router-dom";
+import { ArrowDropUp } from '@mui/icons-material';
+import IconButton from '@mui/material/IconButton';
+
 
 const TeamItem = ({ team }) => {
   const [showDetails, setShowDetails] = useState(false);
@@ -17,7 +21,7 @@ const TeamItem = ({ team }) => {
   }
 
   return (
-    <Card sx={{ maxWidth: 500,  marginTop:5, backgroundColor:"#eeeee4", borderRadius:4 }}>
+    <Card sx={{ maxWidth: 500,  marginTop:3, backgroundColor:"#eeeee4", borderRadius:4 }}>
       <CardContent>
       <Typography variant="h4" component="h1" mt={2} ml={2}>
         PINK UNICORN
@@ -28,26 +32,20 @@ const TeamItem = ({ team }) => {
           #Fazer
         </Typography>
         </Link>
-        <Typography sx={{ fontSize: 12, textAlign:'left' }} mt={1} ml={2}>
+        <Typography sx={{ fontSize: 11, textAlign:'left' }} mt={1} ml={2}>
+        Our idea is to design a digital soluton for mobile phones, which will focus on helping teenagers across therapy sessions.
+      </Typography>
+        <Typography sx={{ fontSize: 11, textAlign:'left' }} mt={1} ml={2}>
         We are a team of students studying in Aalto University, passionate about using technology to solve real-world problems and create innovative solutions. We bring a diverse range of skills and experiences to the table, including software development, design, project management, and more.
       </Typography>
-      <Typography variant="h7" component="h3" mt={4} mb={2} ml={2}>
+      <Typography  variant="h7" component="h3" mt={4} mb={2} ml={2}>
         WE ARE LOOKING FOR
       </Typography>
-        {/* <Typography variant="h5" component="div">
-          be{bull}nev{bull}o{bull}lent
-        </Typography> */}
-        {/* <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          adjective
-        </Typography>
-        <Typography variant="body2">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography> */}
+      
 
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         <Grid item xs={4}>
+        <Link component={RouterLink} to="/apply">
         <Button
         variant='text'
           sx={{
@@ -72,6 +70,7 @@ const TeamItem = ({ team }) => {
        Designer
       </Typography>
       </Button>
+      </Link>
        
         </Grid>
       <Grid item xs={4}>
@@ -121,8 +120,22 @@ const TeamItem = ({ team }) => {
       </Button>
       </Grid>
       </Grid>
+
+
+      {showDetails && 
+      <div>
+      <TeamDetails team={team}/>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <IconButton onClick={() => setShowDetails(!showDetails)} sx={{ fontSize: 50,marginTop:1 }}>
+        <ArrowDropUp sx={{ fontSize: 50 }}/>
+      </IconButton>
+      </div>
+    </div>
+      
+      }
+
+
       </CardContent>
-      <CardActions sx={{justifyContent:'center'}} >
         {/* <Button  size="small">Show More</Button> */}
         {/* <Button
   sx={{
@@ -141,9 +154,24 @@ const TeamItem = ({ team }) => {
 >
   Show More
 </Button> */}
-<Button color="primary" style={{ color: '#000' }} sx={{ textTransform: 'lowercase', borderBottom: '1px solid black', borderRadius:0 }} size="small">Show More</Button>
+{!showDetails &&
+      <CardActions sx={{justifyContent:'center'}} >
 
+
+<Button onClick={() => setShowDetails(!showDetails)}
+color="primary" style={{ color: '#000' }} sx={{ textTransform: 'lowercase', borderBottom: '1px solid black', borderRadius:0 }} size="small">
+Show More
+ {/* {showDetails ? 'Show Less' : 'Show More'} */}
+  </Button>
+
+
+    
+  
+
+     
       </CardActions>
+      }
+      
     </Card>
     // <div>
     //   <h3>PINK UNICORN</h3>

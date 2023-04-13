@@ -5,6 +5,11 @@ import Filter from './components/Filter/Filter';
 import { request } from 'graphql-request';
 import Typography from '@mui/material/Typography';
 import { grey } from '@mui/material/colors';
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import Apply from './components/Application/Apply';
+import Profile from './components/Profile/Profile';
+import PendingApplications from './components/Profile/PendingApplicatons';
+
 
 
 
@@ -73,17 +78,30 @@ const App = () => {
   };
 
   return (
-    <div>
-      <Filter onFilterChange={handleFilterChange} />
-      <Typography variant="h3" component="h1" mt={6} ml={11}>
-        JOIN A TEAM
-      </Typography>
-      <Typography variant="subtitle2" sx={{ color: grey[500] }} component="p" mt={1} ml={11}>
-        Apply for a role that suits you the most and join a team.
-      </Typography>
+    <Router>
+    
+     
       {/* <h1>JOIN A TEAM</h1> */}
-      <TeamList teams={filteredTeams} />
-    </div>
+      
+      <Routes>
+          <Route exact path="/" element={
+            <div>
+             <Filter onFilterChange={handleFilterChange} showSearch={true} />
+             <Typography variant="h3" component="h1" mt={4} ml={11}>
+               JOIN A TEAM
+             </Typography>
+             <Typography variant="subtitle2" sx={{ color: grey[500] }} component="p" mt={1} ml={11}>
+               Apply for a role that suits you the most and join a team.
+             </Typography>
+          <TeamList path="/" teams={filteredTeams} />
+          </div>
+          } />
+          <Route path="/apply" element={<Apply/>} />
+          <Route path="/profile" element={<Profile/>} />
+          <Route path="/pending" element={<PendingApplications/>} />
+        </Routes>
+   
+    </Router>
   );
 };
 
