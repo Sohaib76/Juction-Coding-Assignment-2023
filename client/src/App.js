@@ -36,12 +36,13 @@ const App = () => {
         teams {
           id
           title
-          challengeHashtags
+          challengeHashtag
           description
           idea
           roles
           members {
             name
+            role
           }
           contact
         }
@@ -68,13 +69,24 @@ const App = () => {
       // Apply the filters
       const roleMatch = !filters.role || team.roles.includes(filters.role);
       const challengeMatch = !filters.challenge || team.challenge === filters.challenge;
+      console.log("Triggers Use Effect")
+      console.log(filters, roleMatch)
       return roleMatch && challengeMatch;
+      
+
+      // const roleMatch = !filters.role || team.roles.includes(filters.role);
+      // const challengeMatch = !filters.challenge || team.challenge === filters.challenge;
+      // console.log("Triggers Use Effect")
+      // console.log(filters, roleMatch)
+      // return roleMatch && challengeMatch;
+      
     });
     setFilteredTeams(filtered);
   }, [filters, teams]);
 
   const handleFilterChange = (name, value) => {
-    setFilters({ ...filters, [name]: value });
+    setFilters({ ...filters, ["role"]: value });
+    console.log("value",value);
   };
 
   return (

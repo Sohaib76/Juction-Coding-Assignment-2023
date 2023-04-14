@@ -3,29 +3,49 @@ const faker = require('faker');
 const Team = require('../models/team');
 
 async function createTeams() {
-  const teamSize = Math.floor(Math.random() * 5) + 1;
+  // const teamSize = Math.floor(Math.random() * 5) + 1;
+  const teamSize = 3;
   const members = [];
 
+  const roles =  [
+    'Frontend Developer',
+    'Backend Developer',
+    'Designer',
+    'Product Manager',
+    'Data Analyst',
+    'Engineer'
+  ]
   for (let i = 0; i < teamSize; i++) {
+    const randomRole = roles[Math.floor(Math.random() * roles.length)];
+
     members.push({
       name: faker.name.findName(),
+      role:randomRole
     });
   }
 
   const newTeam = new Team({
-    title: faker.company.catchPhrase(),
-    challengeHashtags: [
-      '#' + faker.random.word(),
-      '#' + faker.random.word(),
-    ],
-    description: faker.lorem.paragraph(),
-    idea: faker.lorem.sentence(),
+    // title: faker.company.catchPhrase(),
+    // description: faker.lorem.paragraph(),
+    // idea: faker.lorem.sentence(),
+    title: faker.company
+    .catchPhrase()
+    .split(' ')
+    .slice(0, 1)
+    .join(' ')
+    .toUpperCase()
+    ,
+    challengeHashtag: '#' + faker.random.word(),
+
+  idea: faker.lorem.sentence() + ' ' + faker.lorem.sentence(),
+  description: Array.from({ length: 7 }, () => faker.lorem.sentence()).join(' '),
     roles: [
-      'Frontend Developer',
-      'Backend Developer',
+      'Frontend',
+      'Backend',
       'Designer',
-      'Product Manager',
-      'Data Analyst',
+      'Manager',
+      'Analyst',
+      'Engineer'
     ].sort(() => 0.5 - Math.random()).slice(0, teamSize),
     members,
     contact: faker.internet.email(),
@@ -40,6 +60,12 @@ async function createTeams() {
 }
 
 module.exports.createTeams = createTeams;
+
+// Above Faker Method /////////////////////////////////////////////
+
+
+
+
 // const Team = require('../models/team');
 
 // async function createTeams() {

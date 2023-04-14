@@ -11,6 +11,7 @@ import Link from '@mui/material/Link';
 import { Link as RouterLink } from "react-router-dom";
 import { ArrowDropUp } from '@mui/icons-material';
 import IconButton from '@mui/material/IconButton';
+import { NavLink } from 'react-router-dom';
 
 
 const TeamItem = ({ team }) => {
@@ -24,19 +25,19 @@ const TeamItem = ({ team }) => {
     <Card sx={{ maxWidth: 500,  marginTop:3, backgroundColor:"#eeeee4", borderRadius:4 }}>
       <CardContent>
       <Typography variant="h4" component="h1" mt={2} ml={2}>
-        PINK UNICORN
+      {team.title.toUpperCase()}
       </Typography>
       <Link href="#" underline="hover">    
       
         <Typography ml={2}  sx={{ fontSize: 14 }} color="#1E90FF" gutterBottom>
-          #Fazer
+        {team.challengeHashtag}
         </Typography>
         </Link>
         <Typography sx={{ fontSize: 11, textAlign:'left' }} mt={1} ml={2}>
-        Our idea is to design a digital soluton for mobile phones, which will focus on helping teenagers across therapy sessions.
-      </Typography>
+          {team.idea}
+        </Typography>
         <Typography sx={{ fontSize: 11, textAlign:'left' }} mt={1} ml={2}>
-        We are a team of students studying in Aalto University, passionate about using technology to solve real-world problems and create innovative solutions. We bring a diverse range of skills and experiences to the table, including software development, design, project management, and more.
+          {team.description}
       </Typography>
       <Typography  variant="h7" component="h3" mt={4} mb={2} ml={2}>
         WE ARE LOOKING FOR
@@ -44,81 +45,47 @@ const TeamItem = ({ team }) => {
       
 
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-        <Grid item xs={4}>
-        <Link component={RouterLink} to="/apply">
-        <Button
-        variant='text'
-          sx={{
-            width: 120,
-            height: 60,
-            backgroundColor: '#1E90FF',
-            '&:hover': {
-              backgroundColor: 'primary.main',
-              opacity: [0.9, 0.8, 0.7],
-            },
-            borderRadius:4,
-            justifyContent:'center',
-            alignItems:'center',
-            display:'flex',
-            textTransform:'none',
-            marginLeft:2
-            
-          }}
-        >
-       
-       <Typography component="span" variant="h8" color="#fff" sx={{textAlign:'center'}}>
-       Designer
-      </Typography>
-      </Button>
-      </Link>
-       
+      {team.roles.map((role, index) => (
+        <Grid item xs={4} key={index}>
+          <Link component={RouterLink}
+          to="/apply"
+          state={{
+            role: role,
+            title: team.title,
+            hashtag: team.challengeHashtag
+          }} 
+          
+         >
+            <Button
+              variant="text"
+              sx={{
+                width: 120,
+                height: 60,
+                backgroundColor: '#1E90FF',
+                '&:hover': {
+                  backgroundColor: 'primary.main',
+                  opacity: [0.9, 0.8, 0.7],
+                },
+                borderRadius: 4,
+                justifyContent: 'center',
+                alignItems: 'center',
+                display: 'flex',
+                textTransform: 'none',
+                marginLeft: 2,
+              }}
+            >
+              <Typography
+                component="span"
+                variant="h8"
+                color="#fff"
+                sx={{ textAlign: 'center' }}
+              >
+               {role}
+              </Typography>
+            </Button>
+          </Link>
         </Grid>
-      <Grid item xs={4}>
-      <Button
-          sx={{
-            width: 120,
-            height: 60,
-            backgroundColor: '#1E90FF',
-            '&:hover': {
-              backgroundColor: 'primary.main',
-              opacity: [0.9, 0.8, 0.7],
-            },
-            borderRadius:4,
-            justifyContent:'center',
-            alignItems:'center',
-            display:'flex',
-            textTransform:'none',
-            
-          }}
-        >
-       <Typography variant="h8" color="#fff" sx={{textAlign:'center'}}>
-       Engineer1
-      </Typography>
-      </Button>
-      </Grid>
-      <Grid item xs={3}>
-      <Button
-          sx={{
-            width: 120,
-            height: 60,
-            backgroundColor: '#1E90FF',
-            '&:hover': {
-              backgroundColor: 'primary.main',
-              opacity: [0.9, 0.8, 0.7],
-            },
-            borderRadius:4,
-            justifyContent:'center',
-            alignItems:'center',
-            display:'flex',
-            textTransform:'none',
-            
-          }}
-        >
-       <Typography variant="h8" color="#fff" sx={{textAlign:'center'}}>
-       Engineer2
-      </Typography>
-      </Button>
-      </Grid>
+      ))}
       </Grid>
 
 

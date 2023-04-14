@@ -68,14 +68,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 const Filter = ({ onFilterChange , showSearch}) => {
-  if (onFilterChange){
-  const handleFilterChange = (event) => {
-   
-    onFilterChange(event.target.name, event.target.value);
-    }
-  };
+  // if (onFilterChange){
+    const [anchorEl, setAnchorEl] = useState(null)
 
-  const [anchorEl, setAnchorEl] = useState(null)
+
+ 
+
+  const handleFilterChange = (event) => {
+    if (onFilterChange) {
+
+    onFilterChange(event.target.name, event.target.value);
+    console.log(event.target.value);
+    // console.log("name" ,event.target.name);
+    }
+  }
+  // };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -124,7 +132,7 @@ const Filter = ({ onFilterChange , showSearch}) => {
 
       {showSearch && 
       
-      <Search>
+      <Search onChange={handleFilterChange}>
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>

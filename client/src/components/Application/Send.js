@@ -10,7 +10,8 @@ import TextField from '@mui/material/TextField';
 import FormSent from './FormSent';
 
 
-const Send = () => {
+const Send = (data) => {
+  console.log("fafs",data);
 
   const [IsSent, setIsSent] = useState(false);
 
@@ -18,25 +19,31 @@ const Send = () => {
     setIsSent(true);
   };
 
+  const titleN = data.data.title.toLowerCase()
+  .split(' ')
+  .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+  .join(' ');
+
+
   const position = "Designer"
   return (
     <div>
         <Card sx={{ marginLeft:11, maxWidth: 900,  marginTop:3, backgroundColor:"#eeeee4", borderRadius:4 }}>
       <CardContent>
       <Typography variant="h4" component="h1" mt={2} ml={2}>
-        PINK UNICORN
+        {data.data.title}
       </Typography>
       <Link href="#" underline="hover">    
       
         <Typography ml={2}  sx={{ fontSize: 14 }} color="#1E90FF" gutterBottom>
-          #Fazer
+          {data.data.hashtag}
         </Typography>
         </Link>
     {!IsSent &&
     <div>
 
         <Typography sx={{ fontSize: 12, textAlign:'left' }} mt={2} ml={2}>
-        Why do you want to apply for the position of a {position} and work with "Pink Unicorn"?
+        Why do you want to apply for the position of a {data.data.role} and work with "{titleN}"?
       </Typography>
       <Typography sx={{ fontSize: 10, textAlign:'left' }} ml={2}>
         Max. 400 words

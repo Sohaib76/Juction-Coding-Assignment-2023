@@ -43,16 +43,16 @@ const TeamDetails = ({ team }) => {
       </Typography>
 
       <Grid container spacing={2}>
-  {items.map((item) => (
+  {team.members.map((item) => (
     <Grid item xs={12} sm={6} md={4} key={item.id}>
       <Paper elevation={3} sx={{ borderRadius: 2}}>
-        <img src={item.image} alt={item.title} style={{ width: '100%', }} />
+        <img src="https://via.placeholder.com/250x300" alt={item.name} style={{ width: '100%', }} />
         </Paper>
         <Typography sx={{ fontSize: 12, textAlign:'center',color: grey[700] }} mt={1} >
-          {item.title}    
+          {item.name}    
       </Typography>
       <Typography sx={{ fontSize: 12, textAlign:'center',color: grey[700] }}  >
-          {item.description}    
+          {item.role}    
       </Typography>
      
     </Grid>

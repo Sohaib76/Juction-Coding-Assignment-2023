@@ -3,13 +3,14 @@ const Schema = mongoose.Schema;
 
 const teamSchema = new Schema({
   title: String,
-  challengeHashtags: [String],
+  challengeHashtag: String,
   description: String,
   idea: String,
   roles: [String],
   members: [
     {
       name: String,
+      role: String
     },
   ],
   contact: String,

@@ -4,7 +4,7 @@ const schema = buildSchema(`
   type Team {
     id: ID!
     title: String!
-    challengeHashtags: [String]!
+    challengeHashtag: String!
     description: String!
     idea: String!
     roles: [String]!
@@ -14,6 +14,7 @@ const schema = buildSchema(`
 
   type Member {
     name: String!
+    role: String!
   }
 
   type Query {
