@@ -4,7 +4,7 @@ This is a web application built using React, GraphQL, MongoDB, and Material UI. 
 
 ## Demo
 
-Check out [Quick Demo](Quick Demo.mp4)
+Check out [Quick Demo](Quick%20Demo.mp4)
 
 ## Features
 
@@ -26,9 +26,9 @@ Check out [Quick Demo](Quick Demo.mp4)
 
 - Start MongoDB on your machine
 - In the server folder, open cmd and run **npm install**
-- In server.js file on line 30, you can follow the instructions and uncomment the code to seed data
-  // To Seed Data to your MongoDB Database uncomment following Code
-  // Comment code on line 20 while seeding
+- In server.js file follow the instructions
+- Uncomment the code on line 30 to seed data (// To Seed Data to your MongoDB Database uncomment following Code)
+- Comment code on line 20 while seeding
 - Run node seed.js to seed data to your MongoDB and then node server.js
 - In the client folder, run npm install then npm start
 
