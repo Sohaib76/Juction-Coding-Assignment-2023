@@ -67,12 +67,28 @@ const App = () => {
   useEffect(() => {
     const filtered = teams.filter((team) => {
       // Apply the filters
-      const roleMatch = !filters.role || team.roles.includes(filters.role);
-      const challengeMatch = !filters.challenge || team.challenge === filters.challenge;
-      console.log("Triggers Use Effect")
-      console.log(filters, roleMatch)
-      return roleMatch && challengeMatch;
+      // const roleMatch = !filters.role || team.roles.includes(filters.role);
+      // const challengeMatch = !filters.challenge || team.challenge === filters.challenge;
+      // console.log("Triggers Use Effect")
+      // console.log(filters, roleMatch)
+      // console.log("team role include", team.roles.includes(filters.role))
+      // return roleMatch && challengeMatch;
       
+      // const roleMatch = !filters.role || new RegExp(filters.role, 'i').test(team.roles);
+      // const challengeMatch = !filters.role || new RegExp(filters.challenge, 'i').test(team.challenge);
+      // console.log("Triggers Use Effect");
+      // console.log(filters, roleMatch);
+      // console.log("team role include", new RegExp(filters.role, 'i').test(team.roles));
+      // console.log("Challange include", new RegExp(filters.role, 'i').test(team.challenge));
+      // return roleMatch && challengeMatch;
+
+      const keywordMatch = !filters.keyword || new RegExp(filters.keyword, 'i').test(team.roles) || new RegExp(filters.keyword, 'i').test(team.challengeHashtag);
+      console.log("Triggers Use Effect");
+      console.log(filters);
+      console.log("keyword", keywordMatch);
+      console.log("team role include", new RegExp(filters.keyword, 'i').test(team.roles));
+      console.log("Challenge include", new RegExp(filters.keyword, 'i').test(team.challengeHashtag));
+      return keywordMatch;
 
       // const roleMatch = !filters.role || team.roles.includes(filters.role);
       // const challengeMatch = !filters.challenge || team.challenge === filters.challenge;
@@ -85,7 +101,8 @@ const App = () => {
   }, [filters, teams]);
 
   const handleFilterChange = (name, value) => {
-    setFilters({ ...filters, ["role"]: value });
+    setFilters({ ...filters, keyword: value });
+    // setFilters({ ...filters, ["role"]: value });
     console.log("value",value);
   };
 
