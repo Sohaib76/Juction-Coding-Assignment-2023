@@ -3,6 +3,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 const { graphqlHTTP } = require('express-graphql');
 const {createTeams} = require('./Database-Addition/create-teams');
+const {createUsers} = require('./Database-Addition/create-users');
 const schema = require('./graphql/schema');
 const resolvers = require('./graphql/resolvers');
 const cors = require('cors');
@@ -25,6 +26,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/junction', {
 mongoose.connection.once('open', () => {
   console.log('Connected to the MongoDB database');
   // createTeams();
+  // createUsers();
 });
 
 app.use(cors());

@@ -11,7 +11,10 @@ import Skills from './Skills';
 
 
 
-const ApplicantData = () => {
+const ApplicantData = (applicant) => {
+
+    console.log("applicant",applicant);
+    
 
 
     const skills = [
@@ -32,16 +35,16 @@ const ApplicantData = () => {
     <Card sx={{ maxWidth: 600,  marginTop:3, backgroundColor:"#eeeee4", borderRadius:4 }}>
       <CardContent>
       <Typography color="#1E90FF"  variant="h5" component="h1" mt={2} ml={2}>
-        Andrea Smith
-        <Box component="span" sx={{ color: grey[600] }}>/ UX Designer</Box>
+        {applicant.applicant.name}
+        <Box component="span" sx={{ color: grey[600] }}>/ {applicant.applicant.title}</Box>
       </Typography>
       
       
         <Typography sx={{ fontSize: 11, textAlign:'left' }} mt={5} ml={2}>
-      {applicationLetter}
+      {applicant.applicant.applicationLetter}
       </Typography>
       <div style={{marginLeft:18}}>
-      <Skills skills={skills}/>
+      <Skills skills={applicant.applicant.skills}/>
       </div>
       </CardContent>
       <CardActions style={{marginTop:0}}>

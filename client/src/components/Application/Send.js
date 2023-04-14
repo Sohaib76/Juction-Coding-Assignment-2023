@@ -8,15 +8,66 @@ import { Grid } from '@mui/material';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import FormSent from './FormSent';
+import { GraphQLClient } from 'graphql-request';
 
 
-const Send = (data) => {
+const Send = (data, user) => {
+
+
+
+
   console.log("fafs",data);
+  console.log("User prop ",user);
+
+  const userId = "64398a63e840e636f6040119";
 
   const [IsSent, setIsSent] = useState(false);
 
+
+  const endpoint = 'http://localhost:5000/graphql'; // Replace with your GraphQL server endpoint
+
+const client = new GraphQLClient(endpoint);
+const updateUser = async () => {
+    const mutation = `
+    mutation updateUser($user_id: Int!, $data: UserUpdateInput!) {
+        updateUser(user_id: $user_id, data: $data) {
+          user_id
+          applicationLetter
+        }
+      }
+      
+      
+    `;
+
+    const variables = {
+        user_id: 1,
+        data: {
+        applicationLetter: inputValue,
+      },
+    };
+
+    try {
+      const response = await client.request(mutation, variables);
+      console.log(inputValue);
+      console.log("response",response);
+      console.log("variable", variables);
+      console.log("mutation", mutation);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+const [inputValue, setInputValue] = useState('');
+
+const handleInputChange = (event) => {
+  setInputValue(event.target.value);
+};
+
   const handleSendClick = () => {
+    if (inputValue != ""){
     setIsSent(true);
+    updateUser();
+    }
   };
 
   const titleN = data.data.title.toLowerCase()
@@ -33,7 +84,7 @@ const Send = (data) => {
       <Typography variant="h4" component="h1" mt={2} ml={2}>
         {data.data.title}
       </Typography>
-      <Link href="#" underline="hover">    
+      <Link component="span" underline="hover" onClick={() => console.log('Link clicked')}>    
       
         <Typography ml={2}  sx={{ fontSize: 14 }} color="#1E90FF" gutterBottom>
           {data.data.hashtag}
@@ -48,7 +99,10 @@ const Send = (data) => {
       <Typography sx={{ fontSize: 10, textAlign:'left' }} ml={2}>
         Max. 400 words
       </Typography>
-      <TextField multiline
+      <TextField 
+      value={inputValue}
+      onChange={handleInputChange}
+      multiline
       rows={5}
      
       sx={{

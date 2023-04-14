@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { request } from 'graphql-request';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
@@ -67,12 +68,66 @@ const Profile = () => {
     const theme = useTheme();
 const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
+const [user, setUser] = useState([]);
+
+// const [randUser, setRandUser] = useState([]);
+
+// useEffect(() => {
+//     const randomUser = user[Math.floor(Math.random() * user.length)];
+//     setRandUser(randomUser);
+  
+// }, [user]);
+
+
+useEffect(() => {
+    // Fetch user data from the GraphQL API
+    const fetchUsers = async () => {
+      const query = `{
+        users {
+            user_id
+            name
+            title
+            image
+            about
+            linkedin
+            insta
+            applicationLetter
+            isAccepted
+            skills {
+              name
+              level
+            }
+            contact
+          }
+      }`;
+      
+    
+
+    try {
+      const data = await request('http://localhost:5000/graphql', query);
+      setUser(data.users);
+      console.log(data.users);
+    } catch (error) {
+      console.error(error);
+    }
+    };
+    
+    fetchUsers();
+    }, []);
+
 
 
   const aboutText = "  As a student at Aalto University, I have also had the opportunity to engage in cross-disciplinary collaborations with students and faculty from other schools, broadening my understanding of different fields and approaches.    As a student at Aalto University, I have also had the opportunity to engage in cross-disciplinary collaborations with students and faculty from other schools, broadening my understanding of different fields and approaches."
 
+//   const randUser = user ? user[Math.floor(Math.random() * user.length)] : user[0];
+
+const selectedUserId = 1; // Replace with the actual user_id you're looking for
+const selectedUser = user.find((u) => u.user_id === selectedUserId);
+
   return (
+   
     <div>
+        
     <Filter showSearch={false}/>
     <Card
   sx={{
@@ -89,14 +144,17 @@ const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     justifyContent: 'space-between',
   }}
 >
+{selectedUser &&
   <CardContent>
+   
+    
     <div>
       <Typography variant="h4" component="h1" mt={2} ml={2}>
-        Andrea Smith
+        {selectedUser.name}
         <Box component="span" sx={{ color: grey[600] }}>/ UX Designer</Box>
       </Typography>
       <Typography ml={2} sx={{ fontSize: 14, color: grey[600] }} gutterBottom>
-        andrea.smith@junction.fi
+        {selectedUser.contact}
       </Typography>
     </div>
     <Grid container spacing={-18}>
@@ -106,7 +164,7 @@ const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     borderBottomRightRadius: isSmallScreen ? 0 : 10, // Adjust borderRadius based on screen size
     overflow: 'hidden', // Hide image parts outside borderRadius
   }}>
-          <img src="https://via.placeholder.com/210x280" 
+          <img src={selectedUser.image}
                         sx={{
                             width: isSmallScreen ? '100%' : '220px',
                             height: isSmallScreen ? 'auto' : '290px',
@@ -123,7 +181,7 @@ const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
         </Typography>
         <Box style={{ maxWidth: 400 }}>
           <Grid container spacing={1} mt={2} >
-            {skills.map((skill, index) => (
+            {selectedUser.skills.map((skill, index) => (
               <Grid item xs={12} key={index}>
                 <Grid container alignItems="center" spacing={1}>
                   <Grid item>
@@ -146,14 +204,14 @@ const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
             About Me
           </Typography>
           <Typography sx={{ fontSize: 12 }} component="p" mt={2} >
-            {aboutText}
+            {selectedUser.about}
           </Typography>
           <Box mt={1} >
-        <IconButton  color="primary" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+        <IconButton  color="primary" href={selectedUser.linkedin} target="_blank" rel="noopener noreferrer">
             <LinkedInIcon  fontSize="large" />
         </IconButton>
 
-        <IconButton color="secondary" href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+        <IconButton color="secondary" href={selectedUser.insta} target="_blank" rel="noopener noreferrer">
             <InstagramIcon  fontSize="large"/>
         </IconButton>
 
@@ -161,9 +219,12 @@ const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
         </Box>
       </Grid>
     </Grid>
+
   </CardContent>
+  }
 </Card>
 </div>
+            
   )
 }
 

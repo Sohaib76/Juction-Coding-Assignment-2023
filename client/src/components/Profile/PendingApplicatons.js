@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -11,9 +11,11 @@ import Paper from '@mui/material/Paper';
 import { grey } from '@mui/material/colors';
 import ApplicantData from './ApplicantData';
 import { Grid } from '@mui/material';
+import { request } from 'graphql-request';
 
 
 const PendingApplicatons = () => {
+
 
     const applicants = [
         { id: 1 },
@@ -22,6 +24,45 @@ const PendingApplicatons = () => {
         // { id: 4 },
         // Add more applicants if needed
       ];
+
+      const [user, setUser] = useState([]);
+
+      useEffect(() => {
+        // Fetch user data from the GraphQL API
+        const fetchUsers = async () => {
+          const query = `{
+            users {
+                user_id
+                name
+                title
+                image
+                about
+                linkedin
+                insta
+                applicationLetter
+                isAccepted
+                skills {
+                  name
+                  level
+                }
+                contact
+              }
+          }`;
+          
+        
+    
+        try {
+          const data = await request('http://localhost:5000/graphql', query);
+          setUser(data.users);
+          console.log(data.users);
+        } catch (error) {
+          console.error(error);
+        }
+        };
+        
+        fetchUsers();
+        }, []);
+    
   return (
     <div>
         <Filter showSearch={false}/>
@@ -35,9 +76,9 @@ const PendingApplicatons = () => {
         </div>
      
         <Grid style={{marginLeft:18, marginBottom:15}} container spacing={1}>
-      {applicants.map((applicant) => (
+      {user.map((applicant) => (
         <Grid key={applicant.id} item xs={12} md={6}>
-          <ApplicantData applicant={applicant} />
+          <ApplicantData applicant={applicant}/>
         </Grid>
       ))}
     </Grid>

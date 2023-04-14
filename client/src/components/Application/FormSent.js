@@ -48,7 +48,7 @@ const FormSent = () => {
      <Typography sx={{ fontSize: 20, textAlign:'center' }} variant="h4" component="h3" mt={2} ml={2}>
         Form sent successfully
       </Typography>
-      <Link href="#" underline="hover">    
+      <Link href="" underline="hover">    
       
       <Typography ml={2}  sx={{ fontSize: 14, color: grey[500],textAlign:'center', textDecoration:'underline'  }} gutterBottom>
         View the form
