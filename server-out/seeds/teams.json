@@ -1,0 +1,103 @@
+[{
+  "title": "PINK UNICORN",
+  "challengeHashtag": "#Fazer",
+  "description": "We are a team of students studying in Aalto University, passionate about using technology to solve real-world problems and create innovative solutions. We bring a diverse range of skills and experiences to the table, including software development, design, project management, and more.",
+  "idea": "Our idea is to design a digital soluton for mobile phones, which will focus on helping teenagers across therapy sessions.",
+  "roles": [
+    "Designer",
+    "Engineer1",
+    "Engineer2"
+  ],
+  "members": [
+    {
+      "name": "Jennet",
+      "role": "UX Designer",
+      "_id": {
+        "$oid": "6436aac6cb38b77f18ac7991"
+      }
+    },
+    {
+      "name": "Andy",
+      "role": "Engineer",
+      "_id": {
+        "$oid": "6436aac6cb38b77f18ac7992"
+      }
+    },
+    {
+      "name": "Selena",
+      "role": "UI Designer",
+      "_id": {
+        "$oid": "6436aac6cb38b77f18ac7993"
+      }
+    }
+  ],
+  "contact": "team@example.com"
+},{
+  "title": "VIRTUAL",
+  "challengeHashtag": "#Unbranded",
+  "description": "Voluptatem quo est voluptas officia sit illo neque mollitia. Animi et dolor nemo voluptatem et quibusdam consequatur error beatae. Doloribus rerum enim et. Vero dignissimos consequuntur possimus eligendi. Harum quisquam nesciunt ut velit magni possimus. Repellat doloribus fuga. Quam iure quidem.",
+  "idea": "A ut commodi praesentium quaerat aspernatur id quod assumenda modi. Doloremque minima exercitationem voluptatem ipsa non asperiores.",
+  "roles": [
+    "Frontend",
+    "Designer",
+    "Backend"
+  ],
+  "members": [
+    {
+      "name": "Dwayne Gulgowski",
+      "role": "Product Manager",
+      "_id": {
+        "$oid": "6438cf90523da879c41b7ec8"
+      }
+    },
+    {
+      "name": "Mrs. Courtney Hansen",
+      "role": "Frontend Developer",
+      "_id": {
+        "$oid": "6438cf90523da879c41b7ec9"
+      }
+    },
+    {
+      "name": "Floyd Rosenbaum",
+      "role": "Frontend Developer",
+      "_id": {
+        "$oid": "6438cf90523da879c41b7eca"
+      }
+    }
+  ],
+  "contact": "Mia18@gmail.com"
+},{
+  "title": "PROGRESSIVE",
+  "challengeHashtag": "#Gorgeous",
+  "description": "Fuga eius qui exercitationem nihil amet et vitae. Ut omnis saepe doloribus at distinctio dolorem iusto at fuga. Similique quia blanditiis illum ullam. Alias atque sunt libero beatae quibusdam atque ut laudantium aut. Qui vel molestiae fugit neque sed voluptate quae odit non. Amet veniam sunt quas. Corporis odit sed.",
+  "idea": "Quisquam dolores non asperiores rerum. Dolorum id non voluptas autem sint dolore earum sed repellendus.",
+  "roles": [
+    "Designer",
+    "Backend",
+    "Engineer"
+  ],
+  "members": [
+    {
+      "name": "Miss Terrell Daugherty",
+      "role": "Frontend Developer",
+      "_id": {
+        "$oid": "6438d047a840e174aa2b9ee9"
+      }
+    },
+    {
+      "name": "Mona Donnelly",
+      "role": "Backend Developer",
+      "_id": {
+        "$oid": "6438d047a840e174aa2b9eea"
+      }
+    },
+    {
+      "name": "Brandy Predovic",
+      "role": "Frontend Developer",
+      "_id": {
+        "$oid": "6438d047a840e174aa2b9eeb"
+      }
+    }
+  ],
+  "contact": "Althea_Howe@gmail.com"
+}]

@@ -1,0 +1,25 @@
+Check Video Demo:
+Quick Demo.mp4 (File in Repo)
+
+Features:
+Teams list and details rendered from MongoDB database
+Filter Teams
+User Data rendered from MongoDB database
+Submit Application 
+User Data will be updated
+Server (The Hiring Teams) can see the user application 
+
+Technologies:
+React, GraphQl, MongoDB, Material UI
+
+Run the code:
+Start MongoDB on your machine
+In server folder open cmd and run "npm install" and 
+In server folder > server.js file on Line 30 you can follow instructions and uncomment the code to seed data
+// To Seed Data to your MongoDB Database uncomment following Code
+// Comment code on line 20 while seeding
+Run "node seed.js" to seed data to your mongodb and then "node server.js"
+In client folder run "npm instal" then "npm start"
+
+Hosting is not done due to fact that the server is on local machine. A good option for Hosting is "Firebase"
+

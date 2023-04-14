@@ -1,0 +1,56 @@
+[{
+  "user_id": 1,
+  "name": "Andrea Smith",
+  "title": "UX Designer",
+  "image": "https://via.placeholder.com/210x280",
+  "about": "As a student at Aalto University, I have also had the opportunity to engage in cross-disciplinary collaborations with students and faculty from other schools, broadening my understanding of different fields and approaches. As a student at Aalto University, I have also had the opportunity to engage in cross-disciplinary collaborations with students and faculty from other schools, broadening my understanding of different fields and approaches.",
+  "linkedin": "https://www.linkedin.com/in/johndoe/",
+  "insta": "https://www.instagram.com/johndoe/",
+  "applicationLetter": "  I am greatly interested in the topic your team is planning, as it aligns with my passion for innovative solutions and cutting-edge technology. The collaborative approach you've taken to tackle complex challenges is truly inspiring and motivates me to contribute my skills and knowledge to the project. I believe that being part of such a forward-thinking team would provide me with invaluable experience and the opportunity to grow both professionally and personally.  `\n",
+  "isAccepted": false,
+  "skills": [
+    {
+      "name": "Illustrator",
+      "level": 3,
+      "_id": {
+        "$oid": "64398a63e840e636f604011a"
+      }
+    },
+    {
+      "name": "Figma",
+      "level": 4,
+      "_id": {
+        "$oid": "64398a63e840e636f604011b"
+      }
+    },
+    {
+      "name": "InVision",
+      "level": 1,
+      "_id": {
+        "$oid": "64398a63e840e636f604011c"
+      }
+    },
+    {
+      "name": "XD",
+      "level": 4,
+      "_id": {
+        "$oid": "64398a63e840e636f604011d"
+      }
+    },
+    {
+      "name": "Bootstrap",
+      "level": 3,
+      "_id": {
+        "$oid": "64398a63e840e636f604011e"
+      }
+    },
+    {
+      "name": "React",
+      "level": 5,
+      "_id": {
+        "$oid": "64398a63e840e636f604011f"
+      }
+    }
+  ],
+  "contact": "andrea.smith@junction.fi"
+}]

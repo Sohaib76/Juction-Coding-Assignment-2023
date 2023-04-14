@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -10,17 +9,10 @@ import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import Avatar from '@mui/material/Avatar';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Link from '@mui/material/Link';
-import { Link as RouterLink } from "react-router-dom";
-
-
+import { Link as RouterLink } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -64,137 +56,111 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-
-
-
-const Filter = ({ onFilterChange , showSearch}) => {
-  // if (onFilterChange){
-    const [anchorEl, setAnchorEl] = useState(null)
-
-
- 
+const Filter = ({ onFilterChange, showSearch }) => {
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleFilterChange = (event) => {
     if (onFilterChange) {
-
-    onFilterChange(event.target.name, event.target.value);
-    console.log(event.target.value);
-    // console.log("name" ,event.target.name);
+      onFilterChange(event.target.name, event.target.value);
+      console.log(event.target.value);
     }
-  }
-  // };
+  };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
   return (
-    // <div>
-    //   <label htmlFor="roleFilter">Role:</label>
-    //   <select name="roleFilter" onChange={handleFilterChange}>
-    //     {/* Render role options */}
-    //   </select>
-    //   <label htmlFor="challengeFilter">Challenge:</label>
-    //   <select name="challengeFilter" onChange={handleFilterChange}>
-    //     {/* Render challenge options */}
-    //   </select>
-    // </div>
-
     <Box sx={{ flexGrow: 1 }}>
-    <AppBar position="static" sx={{ backgroundColor: '#000' }}>
-      <Toolbar>
-      <Link style={{textDecoration:'none', color:'white'}}  component={RouterLink} to="/"> 
+      <AppBar position="static" sx={{ backgroundColor: '#000' }}>
+        <Toolbar>
+          <Link
+            style={{ textDecoration: 'none', color: 'white' }}
+            component={RouterLink}
+            to="/"
+          >
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Link>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+          >
+            Junction
+          </Typography>
 
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="open drawer"
-          sx={{ mr: 2 }}
-        >
-          <MenuIcon />
-        </IconButton>
-        </Link>
-        <Typography
-          variant="h6"
-          noWrap
-          component="div"
-          sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-        >
-          Junction
+          {showSearch && (
+            <Search onChange={handleFilterChange}>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ 'aria-label': 'search' }}
+              />
+            </Search>
+          )}
 
-        </Typography>
-
-      {showSearch && 
-      
-      <Search onChange={handleFilterChange}>
-      <SearchIconWrapper>
-        <SearchIcon />
-      </SearchIconWrapper>
-      <StyledInputBase
-        placeholder="Search…"
-        inputProps={{ 'aria-label': 'search' }}
-      />
-    </Search>
-      
-      
-      }
-       
-        {/* <nav>
-          <Link to="/pending">  */}
-          {/* profile */}
           <div>
-        <IconButton
-        onClick={handleMenu}
-        sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="https://api.dicebear.com/6.x/adventurer/svg?seed=Sophie" />
-        </IconButton>
-        <Menu
-                id="menu-appbar"
-                backgroundColor="black"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-                
-                PaperProps={{
-                  sx: {
-                    backgroundColor: 'black', // Set the background color to black
-                  },
-                }}
+            <IconButton onClick={handleMenu} sx={{ p: 0 }}>
+              <Avatar
+                alt="Remy Sharp"
+                src="https://api.dicebear.com/6.x/adventurer/svg?seed=Sophie"
+              />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              backgroundColor="black"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+              PaperProps={{
+                sx: {
+                  backgroundColor: 'black',
+                },
+              }}
+            >
+              <Link
+                style={{ textDecoration: 'none' }}
+                component={RouterLink}
+                to="/profile"
               >
-
-        <Link style={{textDecoration:'none'}}  component={RouterLink} to="/profile">
-                <MenuItem                 sx={{color:'white',}}
-                >
-
-                  User</MenuItem>
-                  </Link>
-                  <Link style={{textDecoration:'none'}}  component={RouterLink} to="/pending"> 
-                <MenuItem  
-                                sx={{color:'white'}}
-                >Server</MenuItem>
-                </Link>
-              </Menu>
-              </div>
-        {/* </Link>
-        </nav> */}
-      </Toolbar>
-    </AppBar>
-  </Box>
+                <MenuItem sx={{ color: 'white' }}>User</MenuItem>
+              </Link>
+              <Link
+                style={{ textDecoration: 'none' }}
+                component={RouterLink}
+                to="/pending"
+              >
+                <MenuItem sx={{ color: 'white' }}>Server</MenuItem>
+              </Link>
+            </Menu>
+          </div>
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 };
 
